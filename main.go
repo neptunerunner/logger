@@ -6,6 +6,14 @@ import (
 	"os"
 )
 
+func logger(file *os.File) {
+	log.SetOutput(file)
+
+	log.SetFlags(log.Lshortfile | log.LstdFlags)
+
+	log.Println("logging to custom file")
+}
+
 func main() {
 	LOG_FILE := "C:\\Users\\frank\\Documents\\logs\\log.txt"
 
@@ -17,10 +25,5 @@ func main() {
 
 	defer logFile.Close()
 
-	log.SetOutput(logFile)
-
-	log.SetFlags(log.Lshortfile | log.LstdFlags)
-
-	log.Println("logging to custom file")
-
+	logger(logFile)
 }
